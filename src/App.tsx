@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import {
   Award,
   Building2,
+  CalendarCheck,
   CalendarDays,
   Camera,
   ChevronLeft,
@@ -218,8 +219,13 @@ function isSonEomneunNal(year: number, monthIndex: number, day: number): boolean
 }
 
 export default function App() {
-  const [currentYear, setCurrentYear] = useState(2026);
-  const [currentMonth, setCurrentMonth] = useState(10); // 0-indexed (10 = November 2026)
+  const today = new Date();
+  const todayYear = today.getFullYear();
+  const todayMonth = today.getMonth();
+  const todayDay = today.getDate();
+
+  const [currentYear, setCurrentYear] = useState(todayYear);
+  const [currentMonth, setCurrentMonth] = useState(todayMonth);
   const [selectedDate, setSelectedDate] = useState<SelectedDateInfo | null>(null);
   const [heroImageError, setHeroImageError] = useState(false);
   const [logoImageError, setLogoImageError] = useState(false);
@@ -299,6 +305,23 @@ export default function App() {
     setSelectedDate({
       key,
       title: `${currentYear}년 ${currentMonth + 1}월 ${day}일 (${wName})${isGood ? ' · 손 없는 날' : ''}`,
+    });
+  };
+
+  const handleGoToday = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const day = now.getDate();
+    const isGood = isSonEomneunNal(year, month, day);
+    const key = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const wName = WEEKDAY_NAMES[now.getDay()];
+
+    setCurrentYear(year);
+    setCurrentMonth(month);
+    setSelectedDate({
+      key,
+      title: `${year}년 ${month + 1}월 ${day}일 (${wName})${isGood ? ' · 손 없는 날' : ''}`,
     });
   };
 
@@ -1093,7 +1116,19 @@ export default function App() {
                   </button>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-[14px] text-[0.88rem] font-medium text-[#231C18]">
+                <div className="flex flex-wrap items-center gap-2.5 text-[0.88rem] font-medium text-[#231C18]">
+                  <button
+                    type="button"
+                    onClick={handleGoToday}
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-[#E2D5C5] bg-[#F9F5EF] px-3 py-1 text-[0.84rem] font-bold text-[#231C18] transition duration-150 hover:border-[#A64B2A] hover:bg-[#FBEFE9] hover:text-[#82361B]"
+                  >
+                    <CalendarCheck
+                      aria-hidden="true"
+                      strokeWidth={1.9}
+                      className="h-[15px] w-[15px] text-[#A64B2A]"
+                    />
+                    오늘날짜
+                  </button>
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-[#E7C3B2] bg-[#FBEFE9] px-3 py-1 text-[0.84rem] font-bold text-[#82361B]">
                     <Sun
                       aria-hidden="true"
@@ -1126,6 +1161,8 @@ export default function App() {
                   const isGood = isSonEomneunNal(currentYear, currentMonth, day);
                   const key = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                   const isSelected = selectedDate?.key === key;
+                  const isToday =
+                    currentYear === todayYear && currentMonth === todayMonth && day === todayDay;
                   const isSunday = (firstDayOfWeek + idx) % 7 === 0;
 
                   return (
@@ -1133,7 +1170,7 @@ export default function App() {
                       key={key}
                       type="button"
                       onClick={() => handleSelectDay(day, isGood)}
-                      aria-label={`${currentYear}년 ${currentMonth + 1}월 ${day}일${isGood ? ' 손 없는 날' : ''}`}
+                      aria-label={`${currentYear}년 ${currentMonth + 1}월 ${day}일${isToday ? ' 오늘' : ''}${isGood ? ' 손 없는 날' : ''}`}
                       className={`flex min-h-[52px] cursor-pointer flex-col justify-between rounded-[8px] border p-1.5 text-left transition duration-150 hover:-translate-y-px hover:border-[#A64B2A] sm:min-h-[68px] sm:p-2 ${
                         isSelected
                           ? 'border-[#A64B2A] bg-[#FBEFE9] outline-2 outline-[#A64B2A]'
@@ -1142,13 +1179,20 @@ export default function App() {
                             : 'border-[#E8DEC9] bg-white'
                       }`}
                     >
-                      <span
-                        className={`text-[0.84rem] font-bold sm:text-[0.92rem] ${
-                          isSunday ? 'text-[#B43828]' : isGood ? 'text-[#82361B]' : 'text-[#231C18]'
-                        }`}
-                      >
-                        {day}
-                      </span>
+                      <div className="flex w-full items-center justify-between gap-1">
+                        <span
+                          className={`text-[0.84rem] font-bold sm:text-[0.92rem] ${
+                            isSunday ? 'text-[#B43828]' : isGood ? 'text-[#82361B]' : 'text-[#231C18]'
+                          }`}
+                        >
+                          {day}
+                        </span>
+                        {isToday && (
+                          <span className="rounded-[4px] bg-[#A64B2A]/12 px-1 py-[1px] text-[0.62rem] font-extrabold text-[#A64B2A] sm:text-[0.68rem]">
+                            오늘
+                          </span>
+                        )}
+                      </div>
                       {isGood && (
                         <Sun
                           aria-hidden="true"
