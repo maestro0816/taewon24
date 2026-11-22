@@ -323,14 +323,14 @@ export default function App() {
             <a href="#company" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
               <span aria-hidden="true">🏢</span>회사정보
             </a>
+            <a href="#services" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
+              <span aria-hidden="true">🚚</span>이사서비스
+            </a>
             <a href="#storage" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
               <span aria-hidden="true">📦</span>보관이사
             </a>
             <a href="#gallery" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
               <span aria-hidden="true">📸</span>현장사진
-            </a>
-            <a href="#services" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
-              <span aria-hidden="true">🚚</span>이사서비스
             </a>
             <a href="#checklist" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
               <span aria-hidden="true">✅</span>준비사항
@@ -569,8 +569,79 @@ export default function App() {
           </div>
         </section>
 
+        {/* Services Section */}
+        <section id="services" className="py-12 sm:py-[66px]">
+          <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-5">
+            <div className="mx-auto mb-7 max-w-[700px] text-center sm:mb-10">
+              <span className="mb-2 inline-block text-[0.84rem] font-extrabold tracking-[0.04em] text-[#A64B2A]">
+                SERVICE
+              </span>
+              <h2 className="mb-[10px] text-[clamp(1.58rem,2.8vw,2.15rem)] font-extrabold tracking-[-0.02em] text-[#231C18]">
+                <span aria-hidden="true">🚚</span> 부산 보관이사 · 포장이사 안내
+              </h2>
+              <p className="text-[0.98rem] text-[#574B43]">
+                고객님의 이사 일정과 상황에 맞춰 보관이사와 포장이사를 정성껏 진행합니다.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <div className="flex flex-col justify-between rounded-[18px] border border-[#E2D5C5] bg-white p-5 shadow-[0_12px_30px_rgba(35,28,24,0.07)] sm:p-[30px]">
+                <div>
+                  <h3 className="mb-[10px] text-[1.35rem] font-extrabold text-[#231C18]">보관이사</h3>
+                  <p className="mb-[18px] text-[0.95rem] text-[#574B43]">
+                    인테리어 공사, 매매·전세 일정 차이, 해외 체류 등으로 당일 입주가 어려운 고객님을 위한 핵심 서비스입니다.
+                  </p>
+                  <ul className="mb-[22px] flex flex-col gap-2 text-[0.93rem] font-medium text-[#231C18]">
+                    <li>
+                      <span className="font-extrabold text-[#A64B2A]">· </span>짐을 바닥에 내리지 않고 지게차로 컨테이너 자체를 싣고 적재
+                    </li>
+                    <li>
+                      <span className="font-extrabold text-[#A64B2A]">· </span>100% 태원 자가 창고 부지 보관 및 합리적보관료
+                    </li>
+                    <li>
+                      <span className="font-extrabold text-[#A64B2A]">· </span>원하시는 날짜에 맞춰 컨테이너 출고 후 입주 진행
+                    </li>
+                  </ul>
+                </div>
+                <a
+                  href="tel:01045501114"
+                  className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[18px] py-[13px] text-[0.95rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white"
+                >
+                  보관이사 전화 문의 · 010-4550-1114
+                </a>
+              </div>
+
+              <div className="flex flex-col justify-between rounded-[18px] border border-[#E2D5C5] bg-white p-5 shadow-[0_12px_30px_rgba(35,28,24,0.07)] sm:p-[30px]">
+                <div>
+                  <h3 className="mb-[10px] text-[1.35rem] font-extrabold text-[#231C18]">포장이사</h3>
+                  <p className="mb-[18px] text-[0.95rem] text-[#574B43]">
+                    포장부터 운반, 배치, 마무리 정리까지 체계적으로 도와드리는 부산 지역 맞춤 포장이사 서비스입니다.
+                  </p>
+                  <ul className="mb-[22px] flex flex-col gap-2 text-[0.93rem] font-medium text-[#231C18]">
+                    <li>
+                      <span className="font-extrabold text-[#A64B2A]">· </span>가구 및 생활용품 특성에 맞춘 꼼꼼한 포장
+                    </li>
+                    <li>
+                      <span className="font-extrabold text-[#A64B2A]">· </span>부산 전지역 신속하고 안전한 운송 및 배치
+                    </li>
+                    <li>
+                      <span className="font-extrabold text-[#A64B2A]">· </span>이사 일정 상담부터 당일 진행까지 친절한 안내
+                    </li>
+                  </ul>
+                </div>
+                <a
+                  href="tel:01045501114"
+                  className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[18px] py-[13px] text-[0.95rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white"
+                >
+                  포장이사 전화 문의 · 010-4550-1114
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Storage Section */}
-        <section id="storage" className="py-12 sm:py-[66px]">
+        <section id="storage" className="border-y border-[#E2D5C5] bg-[#F2EAE0] py-12 sm:py-[66px]">
           <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-5">
             <div className="mx-auto mb-7 max-w-[700px] text-center sm:mb-10">
               <span className="mb-2 inline-block text-[0.84rem] font-extrabold tracking-[0.04em] text-[#A64B2A]">
@@ -674,7 +745,7 @@ export default function App() {
         </section>
 
         {/* Field Gallery Section */}
-        <section id="gallery" className="border-y border-[#E2D5C5] bg-[#F2EAE0] py-12 sm:py-[66px]">
+        <section id="gallery" className="py-12 sm:py-[66px]">
           <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-5">
             <div className="mx-auto mb-7 max-w-[720px] text-center sm:mb-10">
               <span className="mb-2 inline-block text-[0.84rem] font-extrabold tracking-[0.04em] text-[#A64B2A]">
@@ -740,77 +811,6 @@ export default function App() {
                   </button>
                 );
               })}
-            </div>
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section id="services" className="py-12 sm:py-[66px]">
-          <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-5">
-            <div className="mx-auto mb-7 max-w-[700px] text-center sm:mb-10">
-              <span className="mb-2 inline-block text-[0.84rem] font-extrabold tracking-[0.04em] text-[#A64B2A]">
-                SERVICE
-              </span>
-              <h2 className="mb-[10px] text-[clamp(1.58rem,2.8vw,2.15rem)] font-extrabold tracking-[-0.02em] text-[#231C18]">
-                <span aria-hidden="true">🚚</span> 부산 보관이사 · 포장이사 안내
-              </h2>
-              <p className="text-[0.98rem] text-[#574B43]">
-                고객님의 이사 일정과 상황에 맞춰 보관이사와 포장이사를 정성껏 진행합니다.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              <div className="flex flex-col justify-between rounded-[18px] border border-[#E2D5C5] bg-white p-5 shadow-[0_12px_30px_rgba(35,28,24,0.07)] sm:p-[30px]">
-                <div>
-                  <h3 className="mb-[10px] text-[1.35rem] font-extrabold text-[#231C18]">보관이사</h3>
-                  <p className="mb-[18px] text-[0.95rem] text-[#574B43]">
-                    인테리어 공사, 매매·전세 일정 차이, 해외 체류 등으로 당일 입주가 어려운 고객님을 위한 핵심 서비스입니다.
-                  </p>
-                  <ul className="mb-[22px] flex flex-col gap-2 text-[0.93rem] font-medium text-[#231C18]">
-                    <li>
-                      <span className="font-extrabold text-[#A64B2A]">· </span>짐을 바닥에 내리지 않고 지게차로 컨테이너 자체를 싣고 적재
-                    </li>
-                    <li>
-                      <span className="font-extrabold text-[#A64B2A]">· </span>100% 태원 자가 창고 부지 보관 및 합리적보관료
-                    </li>
-                    <li>
-                      <span className="font-extrabold text-[#A64B2A]">· </span>원하시는 날짜에 맞춰 컨테이너 출고 후 입주 진행
-                    </li>
-                  </ul>
-                </div>
-                <a
-                  href="tel:01045501114"
-                  className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[18px] py-[13px] text-[0.95rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white"
-                >
-                  보관이사 전화 문의 · 010-4550-1114
-                </a>
-              </div>
-
-              <div className="flex flex-col justify-between rounded-[18px] border border-[#E2D5C5] bg-white p-5 shadow-[0_12px_30px_rgba(35,28,24,0.07)] sm:p-[30px]">
-                <div>
-                  <h3 className="mb-[10px] text-[1.35rem] font-extrabold text-[#231C18]">포장이사</h3>
-                  <p className="mb-[18px] text-[0.95rem] text-[#574B43]">
-                    포장부터 운반, 배치, 마무리 정리까지 체계적으로 도와드리는 부산 지역 맞춤 포장이사 서비스입니다.
-                  </p>
-                  <ul className="mb-[22px] flex flex-col gap-2 text-[0.93rem] font-medium text-[#231C18]">
-                    <li>
-                      <span className="font-extrabold text-[#A64B2A]">· </span>가구 및 생활용품 특성에 맞춘 꼼꼼한 포장
-                    </li>
-                    <li>
-                      <span className="font-extrabold text-[#A64B2A]">· </span>부산 전지역 신속하고 안전한 운송 및 배치
-                    </li>
-                    <li>
-                      <span className="font-extrabold text-[#A64B2A]">· </span>이사 일정 상담부터 당일 진행까지 친절한 안내
-                    </li>
-                  </ul>
-                </div>
-                <a
-                  href="tel:01045501114"
-                  className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[18px] py-[13px] text-[0.95rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white"
-                >
-                  포장이사 전화 문의 · 010-4550-1114
-                </a>
-              </div>
             </div>
           </div>
         </section>
