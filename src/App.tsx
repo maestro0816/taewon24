@@ -448,7 +448,7 @@ export default function App() {
           <div className="mx-auto grid w-full max-w-[1120px] grid-cols-1 items-center gap-6 px-4 sm:gap-9 sm:px-5 lg:grid-cols-[1.12fr_0.88fr]">
             <div>
               <span className="mb-4 inline-block rounded-full border border-[#EBD0A2] bg-[#FDF5E6] px-[14px] py-[6px] text-[0.86rem] font-bold text-[#8C5A14]">
-                부산 전지역 · 컨테이너 채로 적재
+                부산 유일의 보관창고 시스템
               </span>
               <h1 className="mb-4 text-[clamp(1.95rem,3.8vw,2.85rem)] font-extrabold leading-[1.24] tracking-[-0.03em] text-[#231C18]">
                 창고에서 짐을 내리지 않는
