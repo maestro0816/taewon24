@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from 'react';
 import {
+  Award,
   Building2,
   CalendarDays,
   Camera,
@@ -447,9 +448,10 @@ export default function App() {
         <section className="bg-gradient-to-b from-[#FBF8F3] to-[#F9F5EF] py-9 pb-[46px] sm:py-[58px] sm:pb-[66px]">
           <div className="mx-auto grid w-full max-w-[1120px] grid-cols-1 items-center gap-6 px-4 sm:gap-9 sm:px-5 lg:grid-cols-[1.12fr_0.88fr]">
             <div>
-              <span className="mb-4 inline-block rounded-full border border-[#EBD0A2] bg-[#FDF5E6] px-[14px] py-[6px] text-[0.86rem] font-bold text-[#8C5A14]">
-                부산 유일의 보관창고 시스템
-              </span>
+              <div className="mb-4 inline-flex items-center gap-2 border-l-4 border-[#A64B2A] py-0.5 pl-3 text-[0.98rem] font-extrabold tracking-[-0.01em] text-[#82361B] sm:text-[1.08rem]">
+                <Award aria-hidden="true" strokeWidth={2.2} className="h-[19px] w-[19px] shrink-0 text-[#A64B2A]" />
+                <span>부산 유일의 보관창고 시스템</span>
+              </div>
               <h1 className="mb-4 text-[clamp(1.95rem,3.8vw,2.85rem)] font-extrabold leading-[1.24] tracking-[-0.03em] text-[#231C18]">
                 창고에서 짐을 내리지 않는
                 <br />
