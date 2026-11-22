@@ -1,0 +1,6 @@
+{
+  "name": "태원익스프레스 | 부산 보관이사·포장이사 전문",
+  "description": "부산 전지역 보관이사·포장이사 전문 태원익스프레스. 지게차 컨테이너 통째 적재, 100% 자가 창고 부지 운영, 손 없는 날 달력 안내.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

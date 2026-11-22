@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #F9F5EF;
+    color: #231C18;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+}
