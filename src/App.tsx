@@ -448,7 +448,7 @@ export default function App() {
           <div className="mx-auto grid w-full max-w-[1120px] grid-cols-1 items-center gap-6 px-4 sm:gap-9 sm:px-5 lg:grid-cols-[1.12fr_0.88fr]">
             <div>
               <span className="mb-4 inline-block rounded-full border border-[#EBD0A2] bg-[#FDF5E6] px-[14px] py-[6px] text-[0.86rem] font-bold text-[#8C5A14]">
-                부산 전지역 · 컨테이너 채로 적재 보관이사
+                부산 전지역 · 컨테이너 채로 적재
               </span>
               <h1 className="mb-4 text-[clamp(1.95rem,3.8vw,2.85rem)] font-extrabold leading-[1.24] tracking-[-0.03em] text-[#231C18]">
                 창고에서 짐을 내리지 않는
@@ -456,13 +456,13 @@ export default function App() {
                 <span className="text-[#A64B2A]">태원익스프레스</span> 보관이사
               </h1>
               <p className="mb-[18px] text-[0.96rem] text-[#574B43] sm:mb-6 sm:text-[1.04rem]">
-                보관이사와 포장이사를 고민 중이신가요? 태원익스프레스는 짐을 일일이 내렸다 다시 싣지 않고,{' '}
+                보관이사 고민 중이신가요? 태원익스프레스는 짐을 일일이 내렸다 다시 싣지 않고,{' '}
                 <strong>지게차로 컨테이너 자체를 싣고 적재</strong>하여 파손과 분실 걱정을 줄였습니다.
               </p>
 
               <div className="mb-5 grid grid-cols-1 gap-[10px] sm:mb-7 sm:grid-cols-2 sm:gap-3">
                 <div className="rounded-[8px] border border-[#E2D5C5] border-l-4 border-l-[#A64B2A] bg-white px-[15px] py-[14px] text-[0.94rem] font-bold text-[#231C18] shadow-[0_4px_12px_rgba(35,28,24,0.04)]">
-                  지게차 컨테이너 통째 적재
+                  지게차를 이용해서 컨테이너 적재
                   <small className="mt-[3px] block text-[0.8rem] font-medium text-[#574B43]">
                     짐을 내리지 않고 안전하게 이동·보관
                   </small>
@@ -508,7 +508,7 @@ export default function App() {
                   <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#FDF5E6] to-[#EFE4D6] px-6 text-center">
                     <span className="text-[1.05rem] font-extrabold text-[#82361B]">태원익스프레스</span>
                     <span className="mt-1 text-[0.88rem] font-medium text-[#574B43]">
-                      이사 차량 · 지게차 컨테이너 통째 적재 · 100% 자가 부지
+                      이사 차량 · 지게차를 이용해서 컨테이너 적재 · 100% 자가 부지
                     </span>
                   </div>
                 )}
@@ -517,7 +517,7 @@ export default function App() {
                 <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-[0.82rem] font-bold text-[#A64B2A]">
                   <span>이사 차량</span>
                   <span aria-hidden="true">·</span>
-                  <span>지게차 컨테이너 통째 적재</span>
+                  <span>지게차를 이용해서 컨테이너 적재</span>
                   <span aria-hidden="true">·</span>
                   <span>합리적보관료</span>
                 </div>
@@ -884,7 +884,7 @@ export default function App() {
                 <span aria-hidden="true">📸</span> 실제 보관창고 · 작업 현장
               </h2>
               <p className="text-[0.98rem] text-[#574B43]">
-                부산 금정구 회동동 자가 창고 부지와 대형 지게차로 컨테이너를 통째로 상·하차하는 실제 현장 사진입니다. 사진을 클릭하면 크게 보실 수 있습니다.
+                부산 금정구 회동동 자가 창고 부지와 대형 지게차로 컨테이너를 상·하차하는 실제 현장 사진입니다. 사진을 클릭하면 크게 보실 수 있습니다.
               </p>
             </div>
 
