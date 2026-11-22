@@ -214,9 +214,11 @@ export default function App() {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
   const [galleryImageErrors, setGalleryImageErrors] = useState<Record<string, boolean>>({});
+  const [isPermitModalOpen, setIsPermitModalOpen] = useState(false);
+  const [permitImageError, setPermitImageError] = useState(false);
 
   useEffect(() => {
-    if (activePhotoIndex === null) return;
+    if (activePhotoIndex === null && !isPermitModalOpen) return;
 
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -224,11 +226,12 @@ export default function App() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setActivePhotoIndex(null);
-      } else if (event.key === 'ArrowLeft') {
+        setIsPermitModalOpen(false);
+      } else if (activePhotoIndex !== null && event.key === 'ArrowLeft') {
         setActivePhotoIndex((prev) =>
           prev === null ? null : (prev - 1 + FIELD_GALLERY_ITEMS.length) % FIELD_GALLERY_ITEMS.length,
         );
-      } else if (event.key === 'ArrowRight') {
+      } else if (activePhotoIndex !== null && event.key === 'ArrowRight') {
         setActivePhotoIndex((prev) =>
           prev === null ? null : (prev + 1) % FIELD_GALLERY_ITEMS.length,
         );
@@ -240,7 +243,7 @@ export default function App() {
       document.body.style.overflow = prevOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [activePhotoIndex]);
+  }, [activePhotoIndex, isPermitModalOpen]);
 
   const activePhoto = activePhotoIndex !== null ? FIELD_GALLERY_ITEMS[activePhotoIndex] : null;
 
@@ -455,7 +458,8 @@ export default function App() {
             </div>
 
             <div className="rounded-[18px] border border-[#E2D5C5] bg-white p-5 shadow-[0_12px_30px_rgba(35,28,24,0.07)] sm:rounded-[24px] sm:p-8">
-              <table className="w-full border-collapse text-[0.9rem] sm:text-[0.95rem]">
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_220px] lg:items-center lg:gap-7">
+                <table className="w-full border-collapse text-[0.9rem] sm:text-[0.95rem]">
                 <tbody>
                   <tr>
                     <th className="block w-full border-b-0 bg-[#FAF5EE] px-3 py-[10px] pb-[6px] text-left align-top font-bold text-[#231C18] md:table-cell md:w-[180px] md:border-b md:border-[#E2D5C5] md:px-4 md:py-[14px]">
@@ -523,8 +527,46 @@ export default function App() {
                       부산 보관이사 · 포장이사 · 100% 태원 자가 창고 부지 컨테이너 적재 보관
                     </td>
                   </tr>
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+
+                <div className="mx-auto w-full max-w-[220px] shrink-0 rounded-[14px] border border-[#E2D5C5] bg-[#FAF5EE] p-3 text-center">
+                  <button
+                    type="button"
+                    onClick={() => setIsPermitModalOpen(true)}
+                    aria-label="화물자동차운송주선사업허가증 크게 보기"
+                    className="group relative block w-full cursor-pointer overflow-hidden rounded-[10px] border border-[#E2D5C5] bg-white shadow-[0_4px_12px_rgba(35,28,24,0.06)] transition hover:border-[#A64B2A]"
+                  >
+                    <div className="aspect-[1/1.41] w-full overflow-hidden bg-white">
+                      {!permitImageError ? (
+                        <img
+                          src="/assets/aistudio/____968bf827.jpg"
+                          alt="태원익스프레스 화물자동차운송주선사업허가증 제09-231호"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                          onError={() => setPermitImageError(true)}
+                          className="h-full w-full object-contain transition duration-200 group-hover:scale-[1.03]"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full flex-col items-center justify-center px-3 text-center">
+                          <span className="text-[0.84rem] font-extrabold text-[#82361B]">운송주선사업허가증</span>
+                          <span className="mt-1 text-[0.76rem] font-semibold text-[#574B43]">제09-231호</span>
+                        </div>
+                      )}
+                    </div>
+                    <span
+                      aria-hidden="true"
+                      className="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-full bg-[#231C18]/75 px-2 py-0.5 text-[0.7rem] font-bold text-white backdrop-blur-[4px] transition group-hover:bg-[#A64B2A]"
+                    >
+                      <ZoomIn className="h-3 w-3" />
+                      크게
+                    </span>
+                  </button>
+                  <div className="mt-2.5 text-[0.8rem] font-extrabold text-[#231C18]">
+                    화물자동차운송주선사업허가증
+                  </div>
+                </div>
+              </div>
 
               <div className="mt-6 border-t border-[#E2D5C5] pt-6">
                 <div className="mb-[14px] flex flex-wrap items-center justify-between gap-3">
@@ -1186,6 +1228,55 @@ export default function App() {
                   </button>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Permit Lightbox Modal */}
+      {isPermitModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="화물자동차운송주선사업허가증"
+          onClick={() => setIsPermitModalOpen(false)}
+          className="fixed inset-0 z-200 flex items-center justify-center bg-[#181310]/85 p-3 backdrop-blur-[4px] sm:p-6"
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className="relative flex w-full max-w-[540px] flex-col overflow-hidden rounded-[20px] border border-[#E2D5C5]/30 bg-[#231C18] text-white shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
+          >
+            <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5 sm:py-3.5">
+              <div className="min-w-0">
+                <span className="block text-[0.74rem] font-extrabold text-[#F2B585]">
+                  허가번호 제09-231호
+                </span>
+                <h3 className="truncate text-[1rem] font-extrabold text-white sm:text-[1.1rem]">
+                  화물자동차운송주선사업허가증
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsPermitModalOpen(false)}
+                aria-label="허가증 닫기"
+                className="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition hover:bg-[#A64B2A]"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="flex max-h-[82vh] items-center justify-center bg-[#14100E] p-3 sm:p-4">
+              {!permitImageError ? (
+                <img
+                  src="/assets/aistudio/____968bf827.jpg"
+                  alt="태원익스프레스 화물자동차운송주선사업허가증 제09-231호"
+                  referrerPolicy="no-referrer"
+                  className="max-h-[76vh] w-auto rounded-[8px] object-contain"
+                />
+              ) : (
+                <div className="flex h-[300px] w-full flex-col items-center justify-center text-center">
+                  <span className="text-[1rem] font-extrabold text-[#F2B585]">태원익스프레스</span>
+                  <span className="mt-1 text-[0.88rem] text-[#D6C9BC]">화물자동차운송주선사업허가증 (제09-231호)</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
