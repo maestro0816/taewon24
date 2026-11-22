@@ -52,6 +52,7 @@ export default function App() {
   const [currentYear, setCurrentYear] = useState(2026);
   const [currentMonth, setCurrentMonth] = useState(10); // 0-indexed (10 = November 2026)
   const [selectedDate, setSelectedDate] = useState<SelectedDateInfo | null>(null);
+  const [heroImageError, setHeroImageError] = useState(false);
 
   const firstDayOfWeek = new Date(currentYear, currentMonth, 1).getDay();
   const lastDate = new Date(currentYear, currentMonth + 1, 0).getDate();
@@ -179,114 +180,37 @@ export default function App() {
               </div>
             </div>
 
-            <div className="rounded-[24px] border border-[#E2D5C5] bg-white p-[18px] shadow-[0_12px_30px_rgba(35,28,24,0.07)]">
-              <svg
-                viewBox="0 0 540 365"
-                width="100%"
-                height="auto"
-                role="img"
-                aria-label="전문적이고 따뜻한 감성의 태원익스프레스 차량, 컨테이너, 지게차 일러스트"
-              >
-                <defs>
-                  <linearGradient id="skyWarmGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#FDF5E6" />
-                    <stop offset="100%" stopColor="#F9F5EF" />
-                  </linearGradient>
-                  <linearGradient id="groundWarmGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#EFE4D6" />
-                    <stop offset="100%" stopColor="#E2D2BE" />
-                  </linearGradient>
-                  <linearGradient id="siennaBodyGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#C25B35" />
-                    <stop offset="100%" stopColor="#8C3C1E" />
-                  </linearGradient>
-                </defs>
-
-                {/* Sky & Ground */}
-                <rect x="0" y="0" width="540" height="248" fill="url(#skyWarmGrad)" rx="16" />
-                <rect x="0" y="248" width="540" height="117" fill="url(#groundWarmGrad)" rx="16" />
-                <line x1="26" y1="288" x2="514" y2="288" stroke="#C7B6A2" strokeWidth="2.5" strokeDasharray="10 8" />
-
-                {/* Warm Sun & Soft Clouds */}
-                <circle cx="476" cy="52" r="22" fill="#E3A442" opacity="0.9" />
-                <rect x="64" y="42" width="86" height="22" rx="11" fill="#FFFFFF" opacity="0.92" />
-                <rect x="86" y="32" width="48" height="20" rx="10" fill="#FFFFFF" opacity="0.92" />
-
-                {/* Moving Truck */}
-                <g transform="translate(26, 50)">
-                  <rect x="4" y="82" width="192" height="10" rx="5" fill="#231C18" opacity="0.13" />
-                  <rect x="0" y="6" width="144" height="72" rx="10" fill="#FFFFFF" stroke="#82361B" strokeWidth="2.5" />
-                  <rect x="10" y="16" width="124" height="32" rx="6" fill="#FBEFE9" />
-                  <text x="72" y="37" textAnchor="middle" fontSize="13" fontWeight="800" fill="#82361B">
-                    태원익스프레스
-                  </text>
-                  <text x="72" y="65" textAnchor="middle" fontSize="10.5" fontWeight="700" fill="#574B43">
-                    부산 보관이사 · 포장이사
-                  </text>
-                  <path d="M144 24 L176 24 L190 48 L190 78 L144 78 Z" fill="url(#siennaBodyGrad)" stroke="#82361B" strokeWidth="2.5" />
-                  <path d="M151 31 L171 31 L180 46 L151 46 Z" fill="#FDF8F2" />
-                  <circle cx="38" cy="80" r="15" fill="#231C18" />
-                  <circle cx="38" cy="80" r="6" fill="#F2EAE0" />
-                  <circle cx="166" cy="80" r="15" fill="#231C18" />
-                  <circle cx="166" cy="80" r="6" fill="#F2EAE0" />
-                </g>
-
-                {/* Stored Container on Taewon Self-Owned Site */}
-                <g transform="translate(30, 162)">
-                  <rect x="4" y="76" width="146" height="9" rx="4.5" fill="#231C18" opacity="0.13" />
-                  <rect x="0" y="0" width="150" height="78" rx="10" fill="url(#siennaBodyGrad)" stroke="#82361B" strokeWidth="2.5" />
-                  <line x1="28" y1="8" x2="28" y2="70" stroke="#D97852" strokeWidth="2.5" />
-                  <line x1="58" y1="8" x2="58" y2="70" stroke="#D97852" strokeWidth="2.5" />
-                  <line x1="88" y1="8" x2="88" y2="70" stroke="#D97852" strokeWidth="2.5" />
-                  <line x1="118" y1="8" x2="118" y2="70" stroke="#D97852" strokeWidth="2.5" />
-                  <rect x="14" y="23" width="122" height="30" rx="6" fill="#FFFFFF" />
-                  <text x="75" y="43" textAnchor="middle" fontSize="11.5" fontWeight="800" fill="#231C18">
-                    100% 태원 자가 부지
-                  </text>
-                </g>
-
-                {/* Container Lifted by Forklift */}
-                <g transform="translate(212, 108)">
-                  <rect x="0" y="0" width="156" height="84" rx="10" fill="url(#siennaBodyGrad)" stroke="#82361B" strokeWidth="2.5" />
-                  <line x1="28" y1="8" x2="28" y2="76" stroke="#D97852" strokeWidth="2.5" />
-                  <line x1="58" y1="8" x2="58" y2="76" stroke="#D97852" strokeWidth="2.5" />
-                  <line x1="88" y1="8" x2="88" y2="76" stroke="#D97852" strokeWidth="2.5" />
-                  <line x1="118" y1="8" x2="118" y2="76" stroke="#D97852" strokeWidth="2.5" />
-                  <rect x="16" y="26" width="124" height="30" rx="6" fill="#FFFFFF" />
-                  <text x="78" y="46" textAnchor="middle" fontSize="12" fontWeight="800" fill="#82361B">
-                    짐 내리지 않고 적재
-                  </text>
-                </g>
-
-                {/* Sleek Forklift in Warm Golden Ochre & Espresso */}
-                <g transform="translate(376, 122)">
-                  <rect x="4" y="122" width="112" height="10" rx="5" fill="#231C18" opacity="0.15" />
-                  <rect x="4" y="-6" width="6" height="128" fill="#231C18" rx="2" />
-                  <rect x="12" y="-6" width="5" height="128" fill="#4E4239" rx="2" />
-                  <path d="M4 66 L-22 66 Q-26 66 -26 70 L-26 73 L4 73 Z" fill="#574B43" stroke="#231C18" strokeWidth="1.8" />
-                  <path d="M17 44 L86 44 Q98 44 103 58 L108 88 L108 108 L17 108 Z" fill="#D48C2A" stroke="#231C18" strokeWidth="2.2" />
-                  <path d="M22 82 L102 82" stroke="#231C18" strokeWidth="3" opacity="0.28" />
-                  <path d="M22 44 L28 10 L82 10 L90 44" fill="none" stroke="#231C18" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
-                  <line x1="55" y1="10" x2="55" y2="44" stroke="#231C18" strokeWidth="2.5" opacity="0.55" />
-                  <rect x="48" y="34" width="16" height="10" rx="3" fill="#362C25" />
-                  <rect x="76" y="4" width="10" height="6" rx="2" fill="#E3A442" stroke="#231C18" strokeWidth="1.5" />
-                  <circle cx="32" cy="110" r="17" fill="#231C18" />
-                  <circle cx="32" cy="110" r="8" fill="#F2EAE0" />
-                  <circle cx="32" cy="110" r="3.5" fill="#231C18" />
-                  <circle cx="90" cy="110" r="14" fill="#231C18" />
-                  <circle cx="90" cy="110" r="6" fill="#F2EAE0" />
-                  <circle cx="90" cy="110" r="3" fill="#231C18" />
-                </g>
-
-                {/* Bottom Summary Banner */}
-                <rect x="28" y="304" width="484" height="44" rx="10" fill="#FFFFFF" stroke="#82361B" strokeWidth="2" />
-                <text x="270" y="331" textAnchor="middle" fontSize="13.5" fontWeight="800" fill="#231C18">
-                  이사 차량 · 지게차 컨테이너 통째 적재 · 합리적보관료
-                </text>
-              </svg>
-              <p className="mt-3 text-center text-[0.9rem] font-semibold text-[#231C18]">
-                이사 차량과 지게차로 컨테이너를 통째로 싣고 적재해 안전하게 보관합니다.
-              </p>
+            <div className="rounded-[24px] border border-[#E2D5C5] bg-white p-3.5 shadow-[0_12px_30px_rgba(35,28,24,0.07)] sm:p-[18px]">
+              <div className="aspect-[3/2] w-full overflow-hidden rounded-[14px] border border-[#E2D5C5]/70 bg-[#FAF5EE]">
+                {!heroImageError ? (
+                  <img
+                    src="/src/assets/images/taewon_logistics_hero_1795324613323.jpg"
+                    alt="태원익스프레스 화물차와 지게차로 컨테이너를 통째로 적재하는 모습"
+                    referrerPolicy="no-referrer"
+                    onError={() => setHeroImageError(true)}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#FDF5E6] to-[#EFE4D6] px-6 text-center">
+                    <span className="text-[1.05rem] font-extrabold text-[#82361B]">태원익스프레스</span>
+                    <span className="mt-1 text-[0.88rem] font-medium text-[#574B43]">
+                      이사 차량 · 지게차 컨테이너 통째 적재 · 100% 자가 부지
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="mt-3.5 px-1 text-center">
+                <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-[0.82rem] font-bold text-[#A64B2A]">
+                  <span>이사 차량</span>
+                  <span aria-hidden="true">·</span>
+                  <span>지게차 컨테이너 통째 적재</span>
+                  <span aria-hidden="true">·</span>
+                  <span>합리적보관료</span>
+                </div>
+                <p className="mt-1 text-[0.9rem] font-semibold text-[#231C18]">
+                  이사 차량과 지게차로 컨테이너를 통째로 싣고 적재해 안전하게 보관합니다.
+                </p>
+              </div>
             </div>
           </div>
         </section>
