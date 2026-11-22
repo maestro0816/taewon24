@@ -852,10 +852,6 @@ export default function App() {
                     <span className="absolute left-0 font-extrabold text-[#A64B2A]">✓</span>
                     100% 태원 자가 창고 부지 운영으로 합리적보관료 제공
                   </li>
-                  <li className="relative pl-[22px] font-semibold text-[#231C18]">
-                    <span className="absolute left-0 font-extrabold text-[#A64B2A]">✓</span>
-                    부산 전지역 일정에 맞춘 유연한 보관 및 재입주 연계
-                  </li>
                 </ul>
               </div>
 
