@@ -184,8 +184,8 @@ export default function App() {
               <div className="aspect-[3/2] w-full overflow-hidden rounded-[14px] border border-[#E2D5C5]/70 bg-[#FAF5EE]">
                 {!heroImageError ? (
                   <img
-                    src="/src/assets/images/taewon_logistics_hero_1795324613323.jpg"
-                    alt="태원익스프레스 화물차와 지게차로 컨테이너를 통째로 적재하는 모습"
+                    src="/src/assets/images/taewon_logistics_hero_20ft_clean_1795325063331.jpg"
+                    alt="태원익스프레스 20피트 컨테이너 적재용 평판 화물차와 지게차 일러스트"
                     referrerPolicy="no-referrer"
                     onError={() => setHeroImageError(true)}
                     className="h-full w-full object-cover"
