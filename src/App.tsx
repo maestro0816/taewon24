@@ -4,7 +4,19 @@
  */
 
 import { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import {
+  Building2,
+  CalendarDays,
+  Camera,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardCheck,
+  Package,
+  Sun,
+  Truck,
+  X,
+  ZoomIn,
+} from 'lucide-react';
 
 interface FieldGalleryItem {
   id: string;
@@ -322,30 +334,105 @@ export default function App() {
             </div>
           </a>
 
-          <nav className="hidden items-center gap-3.5 text-[0.9rem] font-semibold text-[#574B43] lg:flex xl:gap-5 xl:text-[0.95rem]">
-            <a href="#company" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
-              <span aria-hidden="true">🏢</span>회사정보
+          <nav
+            aria-label="주요 메뉴"
+            className="hidden items-center gap-4 text-[0.9rem] font-bold tracking-[-0.015em] text-[#453A33] lg:flex xl:gap-6 xl:text-[0.94rem]"
+          >
+            <a
+              href="#company"
+              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition-colors duration-200 hover:text-[#A64B2A]"
+            >
+              <Building2
+                aria-hidden="true"
+                strokeWidth={1.9}
+                className="h-[15px] w-[15px] text-[#9A7B66] transition-colors duration-200 group-hover:text-[#A64B2A]"
+              />
+              <span>회사정보</span>
+              <span
+                aria-hidden="true"
+                className="absolute right-0 bottom-0 left-0 h-[2px] origin-center scale-x-0 rounded-full bg-[#A64B2A] transition-transform duration-200 group-hover:scale-x-100"
+              />
             </a>
-            <a href="#services" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
-              <span aria-hidden="true">🚚</span>이사서비스
+            <a
+              href="#services"
+              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition-colors duration-200 hover:text-[#A64B2A]"
+            >
+              <Truck
+                aria-hidden="true"
+                strokeWidth={1.9}
+                className="h-[15px] w-[15px] text-[#9A7B66] transition-colors duration-200 group-hover:text-[#A64B2A]"
+              />
+              <span>이사서비스</span>
+              <span
+                aria-hidden="true"
+                className="absolute right-0 bottom-0 left-0 h-[2px] origin-center scale-x-0 rounded-full bg-[#A64B2A] transition-transform duration-200 group-hover:scale-x-100"
+              />
             </a>
-            <a href="#storage" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
-              <span aria-hidden="true">📦</span>보관이사
+            <a
+              href="#storage"
+              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition-colors duration-200 hover:text-[#A64B2A]"
+            >
+              <Package
+                aria-hidden="true"
+                strokeWidth={1.9}
+                className="h-[15px] w-[15px] text-[#9A7B66] transition-colors duration-200 group-hover:text-[#A64B2A]"
+              />
+              <span>보관이사</span>
+              <span
+                aria-hidden="true"
+                className="absolute right-0 bottom-0 left-0 h-[2px] origin-center scale-x-0 rounded-full bg-[#A64B2A] transition-transform duration-200 group-hover:scale-x-100"
+              />
             </a>
-            <a href="#gallery" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
-              <span aria-hidden="true">📸</span>현장사진
+            <a
+              href="#gallery"
+              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition-colors duration-200 hover:text-[#A64B2A]"
+            >
+              <Camera
+                aria-hidden="true"
+                strokeWidth={1.9}
+                className="h-[15px] w-[15px] text-[#9A7B66] transition-colors duration-200 group-hover:text-[#A64B2A]"
+              />
+              <span>현장사진</span>
+              <span
+                aria-hidden="true"
+                className="absolute right-0 bottom-0 left-0 h-[2px] origin-center scale-x-0 rounded-full bg-[#A64B2A] transition-transform duration-200 group-hover:scale-x-100"
+              />
             </a>
-            <a href="#checklist" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
-              <span aria-hidden="true">✅</span>준비사항
+            <a
+              href="#checklist"
+              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition-colors duration-200 hover:text-[#A64B2A]"
+            >
+              <ClipboardCheck
+                aria-hidden="true"
+                strokeWidth={1.9}
+                className="h-[15px] w-[15px] text-[#9A7B66] transition-colors duration-200 group-hover:text-[#A64B2A]"
+              />
+              <span>준비사항</span>
+              <span
+                aria-hidden="true"
+                className="absolute right-0 bottom-0 left-0 h-[2px] origin-center scale-x-0 rounded-full bg-[#A64B2A] transition-transform duration-200 group-hover:scale-x-100"
+              />
             </a>
-            <a href="#calendar" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
-              <span aria-hidden="true">📅</span>손없는날
+            <a
+              href="#calendar"
+              className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition-colors duration-200 hover:text-[#A64B2A]"
+            >
+              <CalendarDays
+                aria-hidden="true"
+                strokeWidth={1.9}
+                className="h-[15px] w-[15px] text-[#9A7B66] transition-colors duration-200 group-hover:text-[#A64B2A]"
+              />
+              <span>손없는날</span>
+              <span
+                aria-hidden="true"
+                className="absolute right-0 bottom-0 left-0 h-[2px] origin-center scale-x-0 rounded-full bg-[#A64B2A] transition-transform duration-200 group-hover:scale-x-100"
+              />
             </a>
           </nav>
 
           <a
             href="tel:01045501114"
-            className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#A64B2A] px-[13px] py-2 text-[0.84rem] font-bold text-white shadow-[0_6px_16px_rgba(166,75,42,0.24)] transition duration-150 hover:-translate-y-px hover:bg-[#82361B] sm:px-[18px] sm:py-[10px] sm:text-[0.92rem]"
+            className="btn-call-pulse inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#A64B2A] px-[13px] py-2 text-[0.84rem] font-bold text-white shadow-[0_6px_16px_rgba(166,75,42,0.24)] hover:bg-[#82361B] sm:px-[18px] sm:py-[10px] sm:text-[0.92rem]"
           >
             <span className="inline-flex items-center justify-center text-[1.02em] leading-none text-[#FFF3D1]" aria-hidden="true">
               ☎
@@ -391,7 +478,7 @@ export default function App() {
               <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <a
                   href="tel:01045501114"
-                  className="inline-flex w-full items-center justify-center gap-[10px] rounded-[12px] bg-[#A64B2A] px-[18px] py-[14px] text-[0.96rem] font-bold text-white shadow-[0_10px_22px_rgba(166,75,42,0.24)] hover:bg-[#82361B] sm:w-auto sm:px-[26px] sm:py-[15px] sm:text-[1.02rem]"
+                  className="btn-call-pulse inline-flex w-full items-center justify-center gap-[10px] rounded-[12px] bg-[#A64B2A] px-[18px] py-[14px] text-[0.96rem] font-bold text-white shadow-[0_10px_22px_rgba(166,75,42,0.24)] hover:bg-[#82361B] sm:w-auto sm:px-[26px] sm:py-[15px] sm:text-[1.02rem]"
                 >
                   <span className="inline-flex items-center justify-center text-[1.02em] leading-none text-[#FFF3D1]" aria-hidden="true">
                     ☎
@@ -601,7 +688,7 @@ export default function App() {
                 <div className="mt-3 flex flex-wrap items-center justify-end gap-[10px] text-[0.86rem] text-[#574B43]">
                   <a
                     href="tel:01045501114"
-                    className="inline-flex w-full items-center justify-center gap-[6px] rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[14px] py-2 text-[0.88rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white sm:w-auto"
+                    className="btn-call-pulse inline-flex w-full items-center justify-center gap-[6px] rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[14px] py-2 text-[0.88rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white sm:w-auto"
                   >
                     📞 위치 문의
                   </a>
@@ -647,7 +734,7 @@ export default function App() {
                 </div>
                 <a
                   href="tel:01045501114"
-                  className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[18px] py-[13px] text-[0.95rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white"
+                  className="btn-call-pulse inline-flex items-center justify-center gap-2 rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[18px] py-[13px] text-[0.95rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white"
                 >
                   보관이사 전화 문의 · 010-4550-1114
                 </a>
@@ -673,7 +760,7 @@ export default function App() {
                 </div>
                 <a
                   href="tel:01045501114"
-                  className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[18px] py-[13px] text-[0.95rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white"
+                  className="btn-call-pulse inline-flex items-center justify-center gap-2 rounded-[8px] border border-[#E7C3B2] bg-[#FBEFE9] px-[18px] py-[13px] text-[0.95rem] font-bold text-[#82361B] hover:border-[#A64B2A] hover:bg-[#A64B2A] hover:text-white"
                 >
                   포장이사 전화 문의 · 010-4550-1114
                 </a>
@@ -1008,12 +1095,14 @@ export default function App() {
                   </button>
                 </div>
 
-                <div className="flex flex-wrap gap-[14px] text-[0.88rem] font-medium text-[#231C18]">
-                  <span className="inline-flex items-center gap-[6px]">
-                    <i className="inline-block h-3 w-3 rounded-[4px] bg-[#A64B2A]" /> 손 없는 날
-                  </span>
-                  <span className="inline-flex items-center gap-[6px]">
-                    <i className="inline-block h-3 w-3 rounded-[4px] bg-[#DFD4C6]" /> 일반일
+                <div className="flex flex-wrap items-center gap-[14px] text-[0.88rem] font-medium text-[#231C18]">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[#E7C3B2] bg-[#FBEFE9] px-3 py-1 text-[0.84rem] font-bold text-[#82361B]">
+                    <Sun
+                      aria-hidden="true"
+                      strokeWidth={1.9}
+                      className="h-[15px] w-[15px] fill-[#F2B585]/45 text-[#A64B2A]"
+                    />
+                    손 없는 날
                   </span>
                 </div>
               </div>
@@ -1046,25 +1135,29 @@ export default function App() {
                       key={key}
                       type="button"
                       onClick={() => handleSelectDay(day, isGood)}
-                      aria-label={`${currentYear}년 ${currentMonth + 1}월 ${day}일 ${isGood ? '손 없는 날' : '일반일'}`}
-                      className={`flex min-h-[52px] cursor-pointer flex-col justify-between rounded-[8px] border border-[#E8DEC9] p-1 text-left transition duration-150 hover:-translate-y-px hover:border-[#A64B2A] sm:min-h-[68px] sm:p-[6px] ${
-                        isSelected ? 'bg-[#FBEFE9] outline-2 outline-[#A64B2A]' : 'bg-white'
+                      aria-label={`${currentYear}년 ${currentMonth + 1}월 ${day}일${isGood ? ' 손 없는 날' : ''}`}
+                      className={`flex min-h-[52px] cursor-pointer flex-col justify-between rounded-[8px] border p-1.5 text-left transition duration-150 hover:-translate-y-px hover:border-[#A64B2A] sm:min-h-[68px] sm:p-2 ${
+                        isSelected
+                          ? 'border-[#A64B2A] bg-[#FBEFE9] outline-2 outline-[#A64B2A]'
+                          : isGood
+                            ? 'border-[#E7C3B2] bg-[#FDF7F2]'
+                            : 'border-[#E8DEC9] bg-white'
                       }`}
                     >
                       <span
                         className={`text-[0.84rem] font-bold sm:text-[0.92rem] ${
-                          isSunday ? 'text-[#B43828]' : 'text-[#231C18]'
+                          isSunday ? 'text-[#B43828]' : isGood ? 'text-[#82361B]' : 'text-[#231C18]'
                         }`}
                       >
                         {day}
                       </span>
-                      <span
-                        className={`rounded-[6px] px-[3px] py-[2px] text-center text-[0.64rem] font-bold leading-[1.25] sm:px-[5px] sm:text-[0.72rem] ${
-                          isGood ? 'bg-[#FBEFE9] text-[#82361B]' : 'bg-[#F4EFE8] text-[#5E5249]'
-                        }`}
-                      >
-                        {isGood ? '손 없는 날' : '일반일'}
-                      </span>
+                      {isGood && (
+                        <Sun
+                          aria-hidden="true"
+                          strokeWidth={1.9}
+                          className="h-4 w-4 self-end fill-[#F2B585]/45 text-[#A64B2A] sm:h-[18px] sm:w-[18px]"
+                        />
+                      )}
                     </button>
                   );
                 })}
@@ -1083,7 +1176,7 @@ export default function App() {
                 </div>
                 <a
                   href="tel:01045501114"
-                  className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#A64B2A] px-4 py-3 text-[0.84rem] font-bold text-white shadow-[0_6px_16px_rgba(166,75,42,0.24)] transition duration-150 hover:-translate-y-px hover:bg-[#82361B] sm:w-auto sm:px-[18px] sm:py-[10px] sm:text-[0.92rem]"
+                  className="btn-call-pulse inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#A64B2A] px-4 py-3 text-[0.84rem] font-bold text-white shadow-[0_6px_16px_rgba(166,75,42,0.24)] hover:bg-[#82361B] sm:w-auto sm:px-[18px] sm:py-[10px] sm:text-[0.92rem]"
                 >
                   <span className="inline-flex items-center justify-center text-[1.02em] leading-none text-[#FFF3D1]" aria-hidden="true">
                     ☎
