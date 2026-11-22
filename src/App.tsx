@@ -534,17 +534,14 @@ export default function App() {
                   </div>
                 )}
               </div>
-              <div className="mt-3.5 px-1 text-center">
-                <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-[0.82rem] font-bold text-[#A64B2A]">
+              <div className="mt-3.5 px-1 py-0.5 text-center">
+                <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-[0.92rem] font-bold text-[#A64B2A] sm:text-[1rem]">
                   <span>이사 차량</span>
                   <span aria-hidden="true">·</span>
                   <span>지게차를 이용해서 컨테이너 적재</span>
                   <span aria-hidden="true">·</span>
                   <span>합리적보관료</span>
                 </div>
-                <p className="mt-1 text-[0.9rem] font-semibold text-[#231C18]">
-                  이사 차량과 지게차로 컨테이너를 통째로 싣고 적재해 안전하게 보관합니다.
-                </p>
               </div>
             </div>
           </div>
