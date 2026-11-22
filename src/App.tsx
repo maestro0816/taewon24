@@ -3,7 +3,68 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+
+interface FieldGalleryItem {
+  id: string;
+  tag: string;
+  title: string;
+  caption: string;
+  src: string;
+  alt: string;
+}
+
+const FIELD_GALLERY_ITEMS: FieldGalleryItem[] = [
+  {
+    id: 'field-unload',
+    tag: '01 · 컨테이너 통째 하차',
+    title: '짐을 내리지 않는 지게차 하차',
+    caption: '이사 차량 적재함에서 20피트 컨테이너 자체를 대형 지게차로 들어 올려 그대로 하차합니다.',
+    src: '/assets/aistudio/__4_d342b82d.jpg',
+    alt: '태원익스프레스 화물차 적재함에서 두산 D70S 지게차가 주황색 20피트 컨테이너를 통째로 들어 올리는 실제 작업 현장',
+  },
+  {
+    id: 'field-load',
+    tag: '02 · 입주 당일 상차',
+    title: '보관 후 재입주 컨테이너 상차',
+    caption: '보관이 끝난 컨테이너를 개봉·재적재 없이 화물차에 바로 올려 고객님 댁으로 출발합니다.',
+    src: '/assets/aistudio/__3_13cc85a1.jpg',
+    alt: '두산 D70S 대형 지게차가 보관용 주황색 20피트 컨테이너를 평판 화물차 적재함으로 직접 상차하는 모습',
+  },
+  {
+    id: 'field-hoist',
+    tag: '03 · 적재 작업',
+    title: '전용 지게차 정밀 적재',
+    caption: '전용 지게차로 흔들림 없이 컨테이너를 들어 올려 안전하게 적재 합니다.',
+    src: '/assets/aistudio/__5_25a2464c.jpg',
+    alt: '대형 지게차가 39번 주황색 컨테이너를 공중으로 들어 올려 보관 적재 구역으로 이동하는 현장 사진',
+  },
+  {
+    id: 'field-yard',
+    tag: '04 · 자가 창고 부지',
+    title: '100% 태원 자가 창고 부지 전경',
+    caption: '부산 금정구 회동동 자가 부지에서 외부 임대 창고 수수료 없이 합리적보관료로 관리합니다.',
+    src: '/assets/aistudio/__6_16c49486.jpg',
+    alt: '부산 금정구 회동동 태원익스프레스 자가 보관창고 부지에 3단으로 깔끔하게 정돈된 컨테이너와 지게차 전경',
+  },
+  {
+    id: 'field-equipment',
+    tag: '05 · 전용 장비 보유',
+    title: '대형 지게차 및 전용 보관 컨테이너',
+    caption: '컨테이너 전용 대형 지게차를 직접 보유·운용하여 안전하고 신속하게 작업합니다.',
+    src: '/assets/aistudio/__2_ae2b1b35.jpg',
+    alt: '태원익스프레스 자가 창고 부지에서 적재된 컨테이너 옆에 대기 중인 대형 지게차',
+  },
+  {
+    id: 'field-truck',
+    tag: '06 · 출고 준비 완료',
+    title: '부산 전지역 맞춤 출고 · 운송',
+    caption: '보관 완료된 컨테이너를 안전하게 이동 합니다.',
+    src: '/assets/aistudio/__1_5c7b6ca1.jpg',
+    alt: '보관창고 부지에서 67번 파란색 20피트 컨테이너를 적재한 태원익스프레스 운송 화물차 모습',
+  },
+];
 
 const SON_EOMNEUN_NAL_MAP: Record<string, number[]> = {
   '2026-01': [7, 8, 17, 18, 27, 28],
@@ -151,6 +212,37 @@ export default function App() {
   const [heroImageError, setHeroImageError] = useState(false);
   const [logoImageError, setLogoImageError] = useState(false);
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
+  const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
+  const [galleryImageErrors, setGalleryImageErrors] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (activePhotoIndex === null) return;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setActivePhotoIndex(null);
+      } else if (event.key === 'ArrowLeft') {
+        setActivePhotoIndex((prev) =>
+          prev === null ? null : (prev - 1 + FIELD_GALLERY_ITEMS.length) % FIELD_GALLERY_ITEMS.length,
+        );
+      } else if (event.key === 'ArrowRight') {
+        setActivePhotoIndex((prev) =>
+          prev === null ? null : (prev + 1) % FIELD_GALLERY_ITEMS.length,
+        );
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activePhotoIndex]);
+
+  const activePhoto = activePhotoIndex !== null ? FIELD_GALLERY_ITEMS[activePhotoIndex] : null;
 
   const checkedCount = Object.values(checkedItems).filter(Boolean).length;
 
@@ -227,21 +319,24 @@ export default function App() {
             </div>
           </a>
 
-          <nav className="hidden items-center gap-6 text-[0.96rem] font-semibold text-[#574B43] md:flex">
-            <a href="#company" className="whitespace-nowrap hover:text-[#A64B2A]">
-              회사정보
+          <nav className="hidden items-center gap-3.5 text-[0.9rem] font-semibold text-[#574B43] lg:flex xl:gap-5 xl:text-[0.95rem]">
+            <a href="#company" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
+              <span aria-hidden="true">🏢</span>회사정보
             </a>
-            <a href="#storage" className="whitespace-nowrap hover:text-[#A64B2A]">
-              보관이사
+            <a href="#storage" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
+              <span aria-hidden="true">📦</span>보관이사
             </a>
-            <a href="#services" className="whitespace-nowrap hover:text-[#A64B2A]">
-              이사 서비스
+            <a href="#gallery" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
+              <span aria-hidden="true">📸</span>현장사진
             </a>
-            <a href="#checklist" className="whitespace-nowrap hover:text-[#A64B2A]">
-              준비사항
+            <a href="#services" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
+              <span aria-hidden="true">🚚</span>이사서비스
             </a>
-            <a href="#calendar" className="whitespace-nowrap hover:text-[#A64B2A]">
-              손 없는 날
+            <a href="#checklist" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
+              <span aria-hidden="true">✅</span>준비사항
+            </a>
+            <a href="#calendar" className="inline-flex items-center gap-1 whitespace-nowrap hover:text-[#A64B2A]">
+              <span aria-hidden="true">📅</span>손없는날
             </a>
           </nav>
 
@@ -578,8 +673,79 @@ export default function App() {
           </div>
         </section>
 
+        {/* Field Gallery Section */}
+        <section id="gallery" className="border-y border-[#E2D5C5] bg-[#F2EAE0] py-12 sm:py-[66px]">
+          <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-5">
+            <div className="mx-auto mb-7 max-w-[720px] text-center sm:mb-10">
+              <span className="mb-2 inline-block text-[0.84rem] font-extrabold tracking-[0.04em] text-[#A64B2A]">
+                FIELD GALLERY
+              </span>
+              <h2 className="mb-[10px] text-[clamp(1.58rem,2.8vw,2.15rem)] font-extrabold tracking-[-0.02em] text-[#231C18]">
+                <span aria-hidden="true">📸</span> 실제 보관창고 · 작업 현장
+              </h2>
+              <p className="text-[0.98rem] text-[#574B43]">
+                부산 금정구 회동동 자가 창고 부지와 대형 지게차로 컨테이너를 통째로 상·하차하는 실제 현장 사진입니다. 사진을 클릭하면 크게 보실 수 있습니다.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {FIELD_GALLERY_ITEMS.map((item, idx) => {
+                const hasError = !!galleryImageErrors[item.id];
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setActivePhotoIndex(idx)}
+                    aria-label={`${item.title} 사진 크게 보기`}
+                    className="group flex cursor-pointer flex-col overflow-hidden rounded-[18px] border border-[#E2D5C5] bg-white text-left shadow-[0_12px_30px_rgba(35,28,24,0.07)] transition duration-200 hover:-translate-y-0.5 hover:border-[#A64B2A] hover:shadow-[0_16px_36px_rgba(35,28,24,0.12)]"
+                  >
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#FAF5EE]">
+                      {!hasError ? (
+                        <img
+                          src={item.src}
+                          alt={item.alt}
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                          onError={() =>
+                            setGalleryImageErrors((prev) => ({
+                              ...prev,
+                              [item.id]: true,
+                            }))
+                          }
+                          className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.04]"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#FDF5E6] to-[#EFE4D6] px-4 text-center">
+                          <span className="text-[0.95rem] font-extrabold text-[#82361B]">태원익스프레스</span>
+                          <span className="mt-1 text-[0.82rem] font-medium text-[#574B43]">{item.title}</span>
+                        </div>
+                      )}
+                      <span
+                        aria-hidden="true"
+                        className="absolute right-3 bottom-3 inline-flex items-center gap-1 rounded-full bg-[#231C18]/75 px-2.5 py-1 text-[0.74rem] font-bold text-white backdrop-blur-[4px] transition duration-200 group-hover:bg-[#A64B2A]"
+                      >
+                        <ZoomIn className="h-3.5 w-3.5" />
+                        크게 보기
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col p-4 sm:p-5">
+                      <span className="mb-1 text-[0.78rem] font-extrabold tracking-[0.02em] text-[#A64B2A]">
+                        {item.tag}
+                      </span>
+                      <h3 className="mb-1.5 text-[1.06rem] font-extrabold text-[#231C18]">
+                        {item.title}
+                      </h3>
+                      <p className="text-[0.88rem] leading-[1.5] text-[#574B43]">{item.caption}</p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         {/* Services Section */}
-        <section id="services" className="border-y border-[#E2D5C5] bg-[#F2EAE0] py-12 sm:py-[66px]">
+        <section id="services" className="py-12 sm:py-[66px]">
           <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-5">
             <div className="mx-auto mb-7 max-w-[700px] text-center sm:mb-10">
               <span className="mb-2 inline-block text-[0.84rem] font-extrabold tracking-[0.04em] text-[#A64B2A]">
@@ -650,7 +816,7 @@ export default function App() {
         </section>
 
         {/* Moving Preparation Checklist Section */}
-        <section id="checklist" className="py-12 sm:py-[66px]">
+        <section id="checklist" className="border-y border-[#E2D5C5] bg-[#F2EAE0] py-12 sm:py-[66px]">
           <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-5">
             <div className="mx-auto mb-7 max-w-[700px] text-center sm:mb-10">
               <span className="mb-2 inline-block text-[0.84rem] font-extrabold tracking-[0.04em] text-[#A64B2A]">
@@ -762,7 +928,7 @@ export default function App() {
         </section>
 
         {/* Son Eomneun Nal Calendar */}
-        <section id="calendar" className="border-y border-[#E2D5C5] bg-[#F2EAE0] py-12 sm:py-[66px]">
+        <section id="calendar" className="py-12 sm:py-[66px]">
           <div className="mx-auto w-full max-w-[1120px] px-4 sm:px-5">
             <div className="mx-auto mb-7 max-w-[700px] text-center sm:mb-10">
               <span className="mb-2 inline-block text-[0.84rem] font-extrabold tracking-[0.04em] text-[#A64B2A]">
@@ -914,6 +1080,116 @@ export default function App() {
           <div className="mt-[10px] text-[0.82rem] text-[#A89A8D]">© 태원익스프레스. All rights reserved.</div>
         </div>
       </footer>
+
+      {/* Field Photo Lightbox Modal */}
+      {activePhoto && activePhotoIndex !== null && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={activePhoto.title}
+          onClick={() => setActivePhotoIndex(null)}
+          className="fixed inset-0 z-200 flex items-center justify-center bg-[#181310]/85 p-3 backdrop-blur-[4px] sm:p-6"
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className="relative flex w-full max-w-[920px] flex-col overflow-hidden rounded-[20px] border border-[#E2D5C5]/30 bg-[#231C18] text-white shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
+          >
+            {/* Top Bar */}
+            <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-6 sm:py-4">
+              <div className="min-w-0">
+                <span className="block text-[0.76rem] font-extrabold text-[#F2B585]">
+                  {activePhoto.tag}
+                </span>
+                <h3 className="truncate text-[1.02rem] font-extrabold text-white sm:text-[1.16rem]">
+                  {activePhoto.title}
+                </h3>
+              </div>
+              <div className="flex shrink-0 items-center gap-3">
+                <span className="text-[0.84rem] font-bold tabular-nums text-[#D6C9BC]">
+                  {activePhotoIndex + 1} / {FIELD_GALLERY_ITEMS.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setActivePhotoIndex(null)}
+                  aria-label="사진 닫기"
+                  className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition hover:bg-[#A64B2A]"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Image Stage */}
+            <div className="relative flex max-h-[70vh] items-center justify-center bg-[#14100E]">
+              {!galleryImageErrors[activePhoto.id] ? (
+                <img
+                  src={activePhoto.src}
+                  alt={activePhoto.alt}
+                  referrerPolicy="no-referrer"
+                  className="max-h-[70vh] w-full object-contain"
+                />
+              ) : (
+                <div className="flex h-[320px] w-full flex-col items-center justify-center px-6 text-center">
+                  <span className="text-[1.05rem] font-extrabold text-[#F2B585]">태원익스프레스</span>
+                  <span className="mt-1 text-[0.9rem] text-[#D6C9BC]">{activePhoto.title}</span>
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={() =>
+                  setActivePhotoIndex(
+                    (activePhotoIndex - 1 + FIELD_GALLERY_ITEMS.length) % FIELD_GALLERY_ITEMS.length,
+                  )
+                }
+                aria-label="이전 사진"
+                className="absolute top-1/2 left-2.5 inline-flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-[#231C18]/75 text-white transition hover:bg-[#A64B2A] sm:left-4 sm:h-11 sm:w-11"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setActivePhotoIndex((activePhotoIndex + 1) % FIELD_GALLERY_ITEMS.length)
+                }
+                aria-label="다음 사진"
+                className="absolute top-1/2 right-2.5 inline-flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-[#231C18]/75 text-white transition hover:bg-[#A64B2A] sm:right-4 sm:h-11 sm:w-11"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Caption & Thumbnail Strip */}
+            <div className="border-t border-white/10 bg-[#231C18] px-4 py-3.5 sm:px-6 sm:py-4">
+              <p className="mb-3 text-[0.9rem] leading-[1.5] text-[#EFE4D6]">
+                {activePhoto.caption}
+              </p>
+              <div className="grid grid-cols-6 gap-2">
+                {FIELD_GALLERY_ITEMS.map((thumb, idx) => (
+                  <button
+                    key={thumb.id}
+                    type="button"
+                    onClick={() => setActivePhotoIndex(idx)}
+                    aria-label={`${thumb.title} 보기`}
+                    className={`aspect-[4/3] cursor-pointer overflow-hidden rounded-[8px] border-2 transition ${
+                      idx === activePhotoIndex
+                        ? 'border-[#F2B585] opacity-100'
+                        : 'border-transparent opacity-55 hover:opacity-90'
+                    }`}
+                  >
+                    <img
+                      src={thumb.src}
+                      alt={thumb.title}
+                      referrerPolicy="no-referrer"
+                      className="h-full w-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
