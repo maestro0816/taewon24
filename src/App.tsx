@@ -112,7 +112,6 @@ const WEEKDAY_SHORT = ['일', '월', '화', '수', '목', '금', '토'];
 interface SelectedDateInfo {
   key: string;
   title: string;
-  desc: string;
 }
 
 interface ChecklistGroup {
@@ -299,10 +298,7 @@ export default function App() {
     const wName = WEEKDAY_NAMES[new Date(currentYear, currentMonth, day).getDay()];
     setSelectedDate({
       key,
-      title: `${currentYear}년 ${currentMonth + 1}월 ${day}일 (${wName}) · ${isGood ? '손 없는 날' : '일반일'}`,
-      desc: isGood
-        ? '손 없는 날로 알려진 날짜입니다. 보관이사·포장이사 예약은 서둘러 010-4550-1114로 문의해 주세요.'
-        : '일반 일정일로, 100% 태원 자가 창고 부지 보관이사 및 포장이사 상담이 가능합니다.',
+      title: `${currentYear}년 ${currentMonth + 1}월 ${day}일 (${wName})${isGood ? ' · 손 없는 날' : ''}`,
     });
   };
 
@@ -1167,14 +1163,14 @@ export default function App() {
 
               <div className="mt-5 flex flex-col items-stretch justify-between gap-[14px] rounded-[12px] border border-[#E2D5C5] bg-[#F9F5EF] px-4 py-[14px] sm:flex-row sm:flex-wrap sm:items-center sm:px-5 sm:py-[18px]">
                 <div>
-                  <strong className="mb-1 block text-[1rem] text-[#231C18]">
+                  <strong className={`block text-[1rem] text-[#231C18] ${selectedDate ? '' : 'mb-1'}`}>
                     {selectedDate ? selectedDate.title : '날짜를 선택해 주세요'}
                   </strong>
-                  <span className="text-[0.92rem] text-[#574B43]">
-                    {selectedDate
-                      ? selectedDate.desc
-                      : '달력에서 날짜를 누르면 손 없는 날 여부를 바로 확인할 수 있습니다.'}
-                  </span>
+                  {!selectedDate && (
+                    <span className="text-[0.92rem] text-[#574B43]">
+                      달력에서 날짜를 누르면 손 없는 날 여부를 바로 확인할 수 있습니다.
+                    </span>
+                  )}
                 </div>
                 <a
                   href="tel:01045501114"
