@@ -534,15 +534,6 @@ export default function App() {
                   </div>
                 )}
               </div>
-              <div className="mt-3.5 px-1 py-0.5 text-center">
-                <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-[0.92rem] font-bold text-[#A64B2A] sm:text-[1rem]">
-                  <span>이사 차량</span>
-                  <span aria-hidden="true">·</span>
-                  <span>지게차를 이용해서 컨테이너 적재</span>
-                  <span aria-hidden="true">·</span>
-                  <span>합리적보관료</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
