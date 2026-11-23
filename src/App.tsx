@@ -331,17 +331,19 @@ export default function App() {
       <header className="sticky top-0 z-100 border-b border-[#E2D5C5] bg-[#F9F5EF]/96 backdrop-blur-[10px]">
         <div className="mx-auto flex h-[68px] w-full max-w-[1120px] items-center justify-between gap-[10px] px-4 sm:h-[80px] sm:gap-4 sm:px-5">
           <a href="#" className="flex shrink-0 items-center gap-2.5 sm:gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-[11px] border border-[#82361B]/20 bg-[#A64B2A] shadow-[0_4px_12px_rgba(166,75,42,0.18)] sm:h-11 sm:w-11">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-[11px] border border-[#E2D5C5] bg-white p-[3px] shadow-[0_4px_12px_rgba(35,28,24,0.08)] sm:h-11 sm:w-11">
               {!logoImageError ? (
-                <img
-                  src="/src/assets/images/taewon_logo_refined_1795330833621.jpg"
-                  alt="태원익스프레스 로고"
-                  referrerPolicy="no-referrer"
-                  onError={() => setLogoImageError(true)}
-                  className="h-full w-full object-cover"
-                />
+                <div className="h-full w-full overflow-hidden rounded-[8px] bg-white">
+                  <img
+                    src="/assets/aistudio/Gemini_Generated_Image_wi55eowi55eowi55_632a1558.png"
+                    alt="태원익스프레스 로고"
+                    referrerPolicy="no-referrer"
+                    onError={() => setLogoImageError(true)}
+                    className="h-full w-full scale-[3.05] object-cover object-center"
+                  />
+                </div>
               ) : (
-                <span className="text-[0.95rem] font-extrabold text-[#FAF5EE]">태원</span>
+                <span className="text-[0.95rem] font-extrabold text-[#A64B2A]">태원</span>
               )}
             </div>
             <div className="flex flex-col">
